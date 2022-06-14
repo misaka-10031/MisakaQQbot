@@ -50,6 +50,8 @@ async def start_background(loop: AbstractEventLoop):
             for i in birthdayGroups:
                 await app.send_group_message(i, MessageChain("御坂美琴生日快乐!"))
                 await asyncio.sleep(1)
+                await app.send_group_message(i, MessageChain("君の指先を舞ってる電光は、私の一生変わらない信仰であり、このレールガンだけが永遠に生きてる！"))
+                await asyncio.sleep(1)
                 await app.send_group_message(i, MessageChain(Image(path="Resource/image\\birthday.png")))
                 await asyncio.sleep(1)
                 await app.send_group_message(i, MessageChain([OnlyMyRailgun]))
@@ -95,7 +97,7 @@ async def music(app: Ariadne, chain: MessageChain, group: Group):  # 点歌
             await asyncio.sleep(1)
             await app.send_group_message(group, MessageChain(musics[2]))
         except IndexError:
-            await app.send_group_message(group, MessageChain("找到的歌曲太少"))
+            await app.send_group_message(group, MessageChain("找到的歌曲太少咯，试试换个关键词吧！"))
 
 
 @app.broadcast.receiver("GroupMessage", decorators=[DetectPrefix('bot ')])
@@ -137,7 +139,7 @@ async def input_(app, chain, user, group, text):
     ##input_
 
     if text == "贴贴":  # 贴贴
-        await app.send_group_message(group, MessageChain([At(user.id), "贴贴"]))
+        await app.send_group_message(group, MessageChain([At(user.id), "贴贴哦~"]))
     if text == "Misaka" or text == "misaka":  # 图片
         print("Resource/image/" + image.get())
         await app.send_group_message(group, MessageChain([At(user.id), Image(path="Resource/image/" + image.get())]))
